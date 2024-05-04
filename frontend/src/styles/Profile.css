@@ -1,0 +1,9 @@
+.codingimg{
+    width: 30px;
+    height: 30px;
+}
+
+.codingimg:hover{
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
