@@ -1,8 +1,33 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp, faChartArea, faChartBar, faChartLine, faFlagUsa, faFolderOpen, faGlobeEurope, faPaperclip, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngular, faBootstrap, faReact, faVuejs } from "@fortawesome/free-brands-svg-icons";
+import { Col, Row, Card, Image, Button, ListGroup, ProgressBar } from '@themesberg/react-bootstrap';
+
+import '../styles/Profile.css'
+import leetcode from '../assets/img/leetcode.png'
+import codechef from '../assets/img/codechef.png'
+import gfg from '../assets/img/gfg.png'
+import hackerrank from '../assets/img/hackerrank.png'
+import codeforce from '../assets/img/codeforce.png'
+
+import { Routes  } from './routes';
+import { Link } from 'react-router-dom';
+
+
+import { faCalendarCheck, faComment } from '@fortawesome/free-solid-svg-icons';
+
+import Profile1 from "../assets/img/team/profile-picture-1.jpg"
+import Profile2 from "../assets/img/team/profile-picture-2.jpg"
+import Profile3 from "../assets/img/team/profile-picture-3.jpg"
+import Profile4 from "../assets/img/team/profile-picture-4.jpg"
+
+
 export default function Profile() {
   return (
     <div>
+
         <div class="container">
         <div class="main-body">
           <div class="row gutters-sm">
@@ -26,29 +51,29 @@ export default function Profile() {
 
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Leetcode</h6>
-                    <span class="text-secondary">https://bootdey.com</span>
+                    <a class="codingimg text-secondary" href='https://leetcode.com/'><img src={leetcode} alt='img' /></a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Codechef</h6>
-                    <span class="text-secondary">bootdey</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Codeforce</h6>
-                    <span class="text-secondary">@bootdey</span>
+                    <a class="codingimg text-secondary" href='https://leetcode.com/'><img src={codechef} alt='img' /></a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Geeksforgeeks</h6>
-                    <span class="text-secondary">bootdey</span>
+                    <a class="codingimg text-secondary" href='https://leetcode.com/'><img src={gfg} alt='img' /></a>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Codeforce</h6>
+                    <a class="codingimg text-secondary" href='https://leetcode.com/'><img src={codeforce} alt='img' /></a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Hackerrank</h6>
-                    <span class="text-secondary">bootdey</span>
+                    <a class="codingimg text-secondary" href='https://leetcode.com/'><img src={hackerrank} alt='img' /></a>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col-md-8">
-              <div class="card mb-3">
+              {/* <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
@@ -101,7 +126,79 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
+
+              <Card border="light" className="shadow-sm">
+                <Card.Header className="border-bottom border-light d-flex justify-content-between">
+                  <h3 className="mb-0">Projects</h3>
+                  <Button as={Link} to={Routes.Projects.path} variant="secondary" size="sm">See all</Button>
+                    </Card.Header>
+                      <Card.Body>
+                      <ListGroup className="list-group-flush list my--3">
+                    
+
+                        <ListGroup.Item className="px-0 border-bottom-dark">
+                        <Row className="align-items-center">
+                          <Col className="col-auto">
+                            <a href="#top" className="user-avatar">
+                              <Image src={leetcode} alt="image"className="rounded-circle" />
+                            </a>
+                          </Col>
+                          <Col className="ms--2">
+                            <h4 className="h6 mb-0">
+                              <a href="#!"><h5>Hotel management</h5></a>
+                            </h4>
+                          </Col>
+                          <Col className="col-auto">
+                            <Button variant="tertiary" size="sm">
+                              View
+                            </Button>
+                          </Col>
+                          </Row>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item className="px-0">
+                        <Row className="align-items-center">
+                          <Col className="col-auto">
+                            <a href="#top" className="user-avatar">
+                              <Image src={leetcode} alt="image"className="rounded-circle" />
+                            </a>
+                          </Col>
+                          <Col className="ms--2">
+                            <h4 className="h6 mb-0">
+                              <a href="#!"><h5>Hotel management</h5></a>
+                            </h4>
+                          </Col>
+                          <Col className="col-auto">
+                            <Button variant="tertiary" size="sm">
+                              View
+                            </Button>
+                          </Col>
+                          </Row>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item className="px-0">
+                        <Row className="align-items-center">
+                          <Col className="col-auto">
+                            <a href="#top" className="user-avatar">
+                              <Image src={leetcode} alt="image"className="rounded-circle" />
+                            </a>
+                          </Col>
+                          <Col className="ms--2">
+                            <h4 className="h6 mb-0">
+                              <a href="#!"><h5>Hotel management</h5></a>
+                            </h4>
+                          </Col>
+                          <Col className="col-auto">
+                            <Button variant="tertiary" size="sm">
+                              View
+                            </Button>
+                          </Col>
+                          </Row>
+                        </ListGroup.Item>
+                      </ListGroup>
+                  </Card.Body>
+              </Card>
 
               <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
