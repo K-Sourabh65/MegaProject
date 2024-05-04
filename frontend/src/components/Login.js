@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import { Routes } from "./routes";
 import BgImage from "../assets/img/illustrations/signin.svg";
-
 
 export default function Login () {
 
@@ -22,18 +20,23 @@ export default function Login () {
         fetch(URL, {
             method: 'GET',
         })
-        .then((res) => res.json())
-        .then((json) => {
-            if(json===400) {
-                window.alert("Student not Found");
-            }
-            else {
-                localStorage.setItem("autentication", true);
-                window.location.href = '/dashboard';
-                localStorage.setItem("email", StudentEmail)
-            }
-        })
-      }
+        .then((res) => {
+          if (res.status != 200) {
+              throw new Error('Student not Found');
+          }
+          return res.json();
+      })
+      .then((json) => {
+          localStorage.setItem("autentication", true);
+          localStorage.setItem("email", StudentEmail);
+          localStorage.setItem("token", json)
+          window.location.href = '/dashboard';
+      })
+      .catch((error) => {
+          console.error('Error:', error.message);
+          window.alert("Student not Found");
+      });
+}
 
   return (
     <main>

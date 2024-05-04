@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const app = express();
 require('dotenv').config();
 require('./models/Student')
@@ -25,19 +28,57 @@ const ContestModel = mongoose.model('Contest');
 const InterviewModel = mongoose.model('Interview');
 
 app.get('/login/:StudentEmail&:Password', async (req, res) => {
-    let StudentList = await StudentModel.find({StudentEmail: `${req.params.StudentEmail}`});
+    try{
+        const hashedPassword = await bcrypt.hash(req.params.Password, 10);
+        console.log(hashedPassword);
 
-    StudentList[0].Password === req.params.Password ? res.json(StudentList) : res.json(400)
-})
+        const student = await StudentModel.findOne({ StudentEmail: req.params.StudentEmail });
 
+        if (!student) {
+            return res.status(404).json({ message: 'Invalid Credentials' });
+        }
+
+        const passwordMatch = await bcrypt.compare(req.params.Password, student.Password);
+
+        if (passwordMatch) {
+            console.log("Login Successfull")
+            const payload = {
+                studentId: student._id,
+                studentEmail: student.StudentEmail,
+                studentName: student.StudentName,
+            };
+
+            const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24h' });
+            console.log(token);
+            return res.status(200).json(token);
+        } else {
+            return res.status(400).json({ message: 'Invalid Credentials' });
+        }
+    }catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 app.post('/register', async (req, res) => {
-    await StudentModel.create({
-        StudentName: req.body.StudentName,
-        StudentEmail: req.body.StudentEmail,
-        Password: req.body.Password
-    })
-})
+    try {
+        const { StudentName, StudentEmail, Password } = req.body;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(Password, salt);
+        console.log(hashedPassword);
+        
+        await StudentModel.create({
+            StudentName,
+            StudentEmail,
+            Password: hashedPassword
+        });
+
+        res.status(200).json({ message: 'User registered successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 // PROJECTS
 
