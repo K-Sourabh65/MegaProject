@@ -70,7 +70,13 @@ app.post('/register', async (req, res) => {
         await StudentModel.create({
             StudentName,
             StudentEmail,
-            Password: hashedPassword
+            Password: hashedPassword,
+        Leetcode: 'https://leetcode.com/',
+        Codechef: 'https://www.codechef.com/dashboard',
+        Geeksforgeeks: 'https://www.geeksforgeeks.org/',
+        Codeforce: 'https://codeforces.com/',
+        Hackerrank: 'https://www.hackerrank.com/',
+        DP: ''
         });
 
         res.status(200).json({ message: 'User registered successfully' });
@@ -131,7 +137,6 @@ app.post('/addcontest', async (req, res) => {
 })
 
 app.put('/updatecontest/:ContestName', async (req, res) => {
-    const ContestName = req.body.ContestName;
     const Status = req.body.Status;
 
     const updatedContest = await ContestModel.findOneAndUpdate(
@@ -159,6 +164,7 @@ app.get('/interviews', async (req, res) => {
 
 app.post('/addinterview', async (req, res) => {
     await InterviewModel.create({
+        InterviewId: req.body.InterviewId,
         CompanyName: req.body.CompanyName,
         Role: req.body.Role,
         Location: req.body.Location,
@@ -175,6 +181,57 @@ app.post('/addinterview', async (req, res) => {
 app.delete('/deleteinterview/:InterviewId', async (req, res) => {
     await InterviewModel.findOneAndDelete({InterviewId: `${req.params.InterviewId}`})
 })
+
+app.get('/viewinterview/:InterviewId', async (req, res) => {
+    
+    const InterviewId = req.params.InterviewId;
+    console.log(InterviewId);
+    const interview = await InterviewModel.findOne({InterviewId: InterviewId});
+    res.json(interview)
+})
+
+
+app.get('/profile/:StudentEmail', async (req, res) => {
+    const studentEmail = req.params.StudentEmail;
+    const student = await StudentModel.findOne({StudentEmail: studentEmail});
+    res.json(student)
+})
+
+app.put('/adddp/:StudentEmail', async (req, res) => {
+    const dp = req.body.DP;
+    const updatedStudent = await StudentModel.findOneAndUpdate(
+            { StudentEmail: req.params.StudentEmail },
+            { $set: { DP: dp } }
+        );
+        res.json(updatedStudent)
+});
+
+app.put('/platform/:StudentEmail', async (req, res) => {
+    const leetcode = req.body.Leetcode;
+    const codechef = req.body.Codechef;
+    const gfg = req.body.Geeksforgeeks;
+    const codeforce = req.body.Codeforce;
+    const hackerrank = req.body.Hackerrank;
+
+    const updatedPlatform = await StudentModel.findOneAndUpdate(
+            { StudentEmail: req.params.StudentEmail },
+            { $set: { Leetcode: leetcode, Codechef: codechef, Geeksforgeeks: gfg, Codeforce: codeforce, Hackerrank: hackerrank } }
+        );
+        res.json(updatedPlatform)
+});
+
+app.get('/projects/:StudentEmail', async (req, res) => {
+    const studentEmail = req.params.StudentEmail;
+    const projects = await ProjectModel.find({ProjectStudentEmail: studentEmail});
+    res.json(projects)
+})
+
+app.get('/interviews/:StudentEmail', async (req, res) => {
+    const studentEmail = req.params.StudentEmail;
+    const interviews = await InterviewModel.find({InterviewStudentId: studentEmail});
+    res.json(interviews)
+})
+
 
 app.listen(8000, () => {
     console.log("server has started in the port 8000")

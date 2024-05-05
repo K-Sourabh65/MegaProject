@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState} from 'react'
+import { Link} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../styles/Interviews.css'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,14 +24,22 @@ export default function Interviews() {
     })
   }, [])
 
+  
+  const handleCardClick = (InterviewId) => {
+    
+  };
+
   const myInterviews = Interviews.map((element) => {
     if (element.InterviewStudentId === localStorage.getItem('email')) {
       return (
         <>
-          <div className='inter-card'>
+        <Link className='inter-card-link' to={{pathname: '/viewinterview', state: {InterviewId: element.InterviewId}}} >
+
+            <div className='inter-card' key={element.InterviewId} onClick={() => handleCardClick(element.InterviewId)}>
             <div className='inter-img'>
               <img src={element.CompanyImage} alt="png"/>
             </div>
+            
 
             <div className='info'>
 
@@ -52,11 +61,12 @@ export default function Interviews() {
               {element.Verdict === 'rejected' && 
                 <div className='reject'>
                   <div className='text'>
-                    <h4><i class="fa-solid fa-xmark"></i> rejected</h4>
+                    <h4><i class="fa-solid fa-circle-xmark"></i> rejected</h4>
                   </div>
               </div>}
             </div>
-        </div>
+          </div>
+        </Link>
           </>
       );
     }
@@ -66,6 +76,8 @@ export default function Interviews() {
     if (element.InterviewStudentId !== localStorage.getItem('email')) {
       return (
         <>
+
+      <Link className='inter-card-link' to={{pathname: '/viewinterview', state: {InterviewId: element.InterviewId}}} >
           <div className='inter-card'>
             <div className='inter-img'>
               <img src={element.CompanyImage} alt="png"/>
@@ -92,12 +104,14 @@ export default function Interviews() {
               {element.Verdict === 'rejected' && 
                 <div className='reject'>
                   <div className='text'>
-                    <h4><i class="fa-solid fa-xmark"></i> rejected</h4>
+                    <h4><i class="fa-solid fa-circle-xmark"></i> rejected</h4>
                   </div>
               </div>}
               
             </div>
         </div>
+
+        </Link>
           </>
       );
     }
@@ -111,7 +125,7 @@ export default function Interviews() {
           <h2>My Interview Experiences</h2>
           <Button id="addinterbtn" as={Link} to={Routes.AddInterview.path} variant="primary">
                   <FontAwesomeIcon icon={faPlus} /> add Interview
-            </Button>
+          </Button>
         </div>
         <div className='linebr'></div>
 

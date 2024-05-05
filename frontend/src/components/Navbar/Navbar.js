@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
@@ -12,6 +12,18 @@ import { Link } from 'react-router-dom';
 
 export default (props) => {
 
+  let [student, setStudent] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/profile/${localStorage.getItem('email')}`, {
+        method: 'GET',
+    })
+    .then((res) => res.json())
+    .then((json) => {
+        setStudent(json)
+    })
+  }, [])
+  
   function logout() {
     localStorage.setItem('autentication', false)
     window.location.href = '/';
@@ -37,9 +49,9 @@ export default (props) => {
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle as={Nav.Link} className="pt-1 px-0">
                 <div className="media d-flex align-items-center">
-                  <Image src={ProfilePic} className="user-avatar md-avatar rounded-circle" />
+                  <Image src={student.DP} className="user-avatar md-avatar rounded-circle" />
                   <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                    <span className="mb-0 font-large fw-bold">{localStorage.getItem('email')}</span>
+                    <span className="mb-0 font-large fw-bold">{student.StudentName}</span>
                   </div>
                 </div>
               </Dropdown.Toggle>

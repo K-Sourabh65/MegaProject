@@ -13,9 +13,11 @@ export const Routes = {
     Jobs: { path: "/jobs" },
     Clubs: { path: "/clubs" },
     Profile: { path: "/profile" },
+    Logout: { path: "/logout" },
 
     NotFound: { path: "/404" },
-
+    
     AddProject: { path: "/addproject"},
     AddInterview: { path: "/addinterview"},
+    ViewInterview: { path: "/viewinterview"},
 }
