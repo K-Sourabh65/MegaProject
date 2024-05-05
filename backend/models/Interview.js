@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const InterviewSchema = new mongoose.Schema(
     {
+        InterviewId:{
+            require: true,
+            type: String,
+        },
         CompanyName:{
             require: true,
             type: String,

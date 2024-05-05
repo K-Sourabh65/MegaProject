@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 import '../styles/AddInterview.css'
 
 function AddInterview(){
@@ -25,6 +25,7 @@ function AddInterview(){
         }
     }
 
+    const interviewid = useId();
     function Add(e){
         console.log({CompanyImage})
         e.preventDefault()
@@ -35,6 +36,7 @@ function AddInterview(){
                 "x-access-token": "token-value",
             },
             body: JSON.stringify({
+                "InterviewId": `${interviewid}`,
                 "CompanyName": `${CompanyName}`,
                 "Role": `${Role}`,
                 "Location": `${Location}`,

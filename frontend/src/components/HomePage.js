@@ -4,24 +4,26 @@ import { Routes } from "./routes";
 
 // pages
 
-import Dashboard from "./Dashboard";
-import Problems from './Problems';
-import DSASheets from './DSASheets';
-import Contests from './Contests';
-import Projects from './Projects';
-import Interviews from './Interviews';
-import Jobs from './Jobs';
-import Clubs from './Clubs';
-import Profile from './Profile';
-import NotFoundPage from './NotFound';
+import Dashboard from "./Dashboard"
+import Problems from './Problems'
+import DSASheets from './DSASheets'
+import Contests from './Contests'
+import Projects from './Projects'
+import Interviews from './Interviews'
+import Jobs from './Jobs'
+import Clubs from './Clubs'
+import Profile from './Profile'
+import Logout from './Logout'
+import NotFoundPage from './NotFound'
 
 // components
-import Sidebar from "./Navbar/Sidebar";
-import Navbar from "./Navbar/Navbar";
+import Sidebar from "./Navbar/Sidebar"
+import Navbar from "./Navbar/Navbar"
 import Preloader from "./Navbar/Preloader"
 
 import AddProject from './AddProject'
-import AddInterview from './AddInterview';
+import AddInterview from './AddInterview'
+import ViewInterview from './ViewInterview'
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -86,11 +88,13 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Jobs.path} component={Jobs} />
     <RouteWithSidebar exact path={Routes.Clubs.path} component={Clubs} />
     <RouteWithSidebar exact path={Routes.Profile.path} component={Profile} />
+    <RouteWithSidebar exact path={Routes.Profile.path} component={Logout} />
 
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
 
     <RouteWithSidebar exact path={Routes.AddProject.path} component={AddProject}/>
     <RouteWithSidebar exact path={Routes.AddInterview.path} component={AddInterview}/>
+    <RouteWithSidebar exact path={Routes.ViewInterview.path} component={ViewInterview}/>
 
     <Redirect to={Routes.NotFound.path} />
   </Switch>
