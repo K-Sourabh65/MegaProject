@@ -267,7 +267,7 @@ function myPlatforms () {
             <div class="col-md-4 mb-3">
               <div class="card border border-dark rounded-4">
                 <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center ">
+                  <div class="d-flex flex-column align-items-center text-center">
                     <img style={{width:"150px", height: "150px", overflow:"hidden", border: "2px solid #000"}} src={student.DP} alt="" class="rounded-circle" />
                     <div class="mt-3">
                       <h3>{student.StudentName}</h3>
@@ -278,9 +278,8 @@ function myPlatforms () {
                   </div>
                 </div>
               </div>
-              <div class="card mt-2  border border-dark rounded-4">
-                <ul class="list-group list-group-flush mt-2">
-
+              <div class="card mt-2  border border-dark rounded-4 mt-4">
+                <ul style={{margin: "-18px"}} class="list-group list-group-flush ">
                   {myPlatforms()}
                 </ul>
               </div>
@@ -322,7 +321,7 @@ function myPlatforms () {
               </Card>
 
 
-              <Card border="light" className="border border-dark shadow-sm rounded-4">
+              <Card border="light" className="border border-dark shadow-sm rounded-4 mt-4">
                 <Card.Header className="border-bottom border-light d-flex justify-content-between">
                   <h3 className="mb-0">Interview Experiences</h3>
                   <Button as={Link} to={Routes.Projects.path} variant="secondary" size="sm">See all</Button>
