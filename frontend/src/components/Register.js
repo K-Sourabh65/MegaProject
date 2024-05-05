@@ -5,7 +5,7 @@ import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-sv
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-
+// import bcrypt from "bcrypt";
 import { Routes } from "./routes";
 import BgImage from "../assets/img/illustrations/signin.svg";
 
@@ -15,10 +15,32 @@ export default function Register () {
     let [StudentName, setStudentName] = useState([]);
     let [StudentEmail, setStudentEmail] = useState([]);
     let [Password, setPassword] = useState([]);
+    let [error, setError] = useState([]);
 
     function Add(e){
       console.log({StudentName,StudentEmail,Password});
         e.preventDefault()
+        if (!StudentName || !StudentEmail || !Password) {
+          setError("Please Enter Email and Password.");
+          return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValidEmail = emailRegex.test(StudentEmail);
+        
+        if (!isValidEmail) {
+          alert('Please Enter a valid Email Address'); //add toast in red
+          return
+        }
+       
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$/;
+
+        const isValidPassword = passwordRegex.test(Password)
+        
+        if (!isValidPassword) {
+          alert("Password is not strong"); //add toast
+          return
+        }
+        
         fetch('http://localhost:8000/register', {
             method: 'POST',
             headers: {

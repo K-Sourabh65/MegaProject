@@ -1,0 +1,114 @@
+.problems-container {
+    margin: 20px;
+  }
+  
+  .problems-container .iframe-container {
+    margin-bottom: 20px;
+  }
+  
+  .problems-container .problems {
+    margin-bottom: 20px;
+  }
+  
+  .problems-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .problem-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .problem-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .problem-card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .problem-card a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .problem-card a:hover {
+    background-color: #0056b3;
+  }
+  .daily-questions-container {
+    margin: 20px;
+  }
+  
+  .question-card {
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .question-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  
+  .question-card .tag {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .question-card h2 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .question-card .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .question-card .info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .question-card .label {
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  
+  .question-card .value {
+    font-size: 14px;
+  }
+  
+  .question-card a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .question-card a:hover {
+    background-color: #0056b3;
+  }
+  
