@@ -10,12 +10,6 @@ import '../styles/Project.scss';
 const Card = ({ image, title, text, projectLink }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // const handleIconClick = (e) => {
-  //   e.preventDefault();
-  //   console.log(projectLink)
-  //   window.location.href = projectLink;
-  // };
-
   return (    
     <a href={projectLink} className={`card ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <div className="card__image">
