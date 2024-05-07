@@ -24,6 +24,7 @@ import Preloader from "./Navbar/Preloader"
 import AddProject from './AddProject'
 import AddInterview from './AddInterview'
 import ViewInterview from './ViewInterview'
+import ChatGpt from './ChatGpt';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -94,6 +95,7 @@ export default () => (
 
     <RouteWithSidebar exact path={Routes.AddProject.path} component={AddProject}/>
     <RouteWithSidebar exact path={Routes.AddInterview.path} component={AddInterview}/>
+    <RouteWithSidebar exact path={Routes.ChatGpt.path} component={ChatGpt}/>
     <RouteWithSidebar exact path={Routes.ViewInterview.path} component={ViewInterview}/>
 
     <Redirect to={Routes.NotFound.path} />
