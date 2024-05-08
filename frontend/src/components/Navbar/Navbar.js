@@ -59,8 +59,8 @@ export default (props) => {
                 <Dropdown.Item className="fw-bold" as={Link} to={Routes.Profile.path}>
                   <FontAwesomeIcon icon={faUserCircle} className="me-2" /> My Profile
                 </Dropdown.Item>
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" onClick={logout} /> Logout
+                <Dropdown.Item className="fw-bold" as={Link} to={Routes.Logout.path} >
+                  <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" /> Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
