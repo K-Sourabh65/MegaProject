@@ -23,9 +23,9 @@ export default function ViewInterview(props) {
   return(
     <>
 
-      <div className='inter-container'>
+      <div className='vinter-container'>
 
-        <div className='inter-card'>
+        <div className='vinter-card'>
             <div className='inter-img'>
               <img src={interview.CompanyImage} alt="png"/>
             </div>

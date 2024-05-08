@@ -30,7 +30,7 @@ export default (props) => {
   }
 
   return (
-    <div className="mt-2 rounded bg-light">
+    <div className="mt-2 rounded bg-light sticky-top">
       <Navbar variant="dark" expanded className="ps-3 pe-5 pt-1 pb-1">
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100">

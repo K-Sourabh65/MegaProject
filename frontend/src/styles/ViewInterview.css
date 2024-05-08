@@ -1,4 +1,4 @@
-.inter-container{
+.vinter-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +6,7 @@
     margin-top: 30px;
 }
 
-.inter-card{
+.vinter-card{
     display: flex;
     background: #fff;
     margin-bottom: 30px;

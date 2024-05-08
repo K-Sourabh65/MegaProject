@@ -9,6 +9,7 @@ import "react-datetime/css/react-datetime.css";
 
 
 import './index.css';
+import Home from './components/Home';
 import Website from './components/Website';
 import HomePage from './components/HomePage';
 
