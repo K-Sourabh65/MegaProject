@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faUser, faBriefcase, faList, faUsers,faWandMagicSparkles} from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faUser, faBriefcase, faList, faUsers, faCode } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -126,17 +126,17 @@ export default function Sidebar (props = {}) {
               <NavItem title="Problems" link={Routes.Problems.path} icon={faInbox} />
               <NavItem title="DSA Sheets" link={Routes.DSASheets.path} icon={faList} />
               <NavItem title="Contests" link={Routes.Contests.path} icon={faCalendarAlt} />
-              <NavItem title="Projects" link={Routes.Projects.path} icon={faBook} />
+              <NavItem title="Projects" link={Routes.Projects.path} icon={faCode} />
               <NavItem title="Interviews" link={Routes.Interviews.path} icon={faUsers} />
               <NavItem title="Jobs" link={Routes.Jobs.path} icon={faBriefcase} />
               <NavItem title="Clubs" link={Routes.Clubs.path} icon={faHandHoldingUsd} />
 
               <Dropdown.Divider className="my-4 border grey" />
               
-              <NavItem title="Chat with AI" link={Routes.ChatGpt.path} icon={faWandMagicSparkles} />
+              <NavItem title="Logout" link={Routes.Logout.path} icon={faSignOutAlt} />
               <NavItem title="Profile" link={Routes.Profile.path} icon={faUser} />
               
-              <Button onClick={logout} variant="secondary" className="upgrade-to-pro mb-3"><FontAwesomeIcon icon={faRocket} className="me-1" /> Logout</Button>
+              <Button as={Link} to={Routes.ChatGpt.path} variant="secondary" className="upgrade-to-pro mb-3"><FontAwesomeIcon icon={faRocket} className="me-1" /> Chat with AI</Button>
             </Nav>
           </div>
         </SimpleBar>

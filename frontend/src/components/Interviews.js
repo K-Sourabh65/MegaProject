@@ -78,7 +78,7 @@ export default function Interviews() {
         <>
 
       <Link className='inter-card-link' to={{pathname: '/viewinterview', state: {InterviewId: element.InterviewId}}} >
-          <div className='inter-card'>
+          <div class='inter-card'>
             <div className='inter-img'>
               <img src={element.CompanyImage} alt="png"/>
             </div>

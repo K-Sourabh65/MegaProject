@@ -89,7 +89,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Jobs.path} component={Jobs} />
     <RouteWithSidebar exact path={Routes.Clubs.path} component={Clubs} />
     <RouteWithSidebar exact path={Routes.Profile.path} component={Profile} />
-    <RouteWithSidebar exact path={Routes.Profile.path} component={Logout} />
+    <RouteWithSidebar exact path={Routes.Logout.path} component={Logout} />
 
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
 
