@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faUser, faBriefcase, faList, faUsers, faCode } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faUser, faBriefcase, faList, faUsers, faCode,faWandMagicSparkles} from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -133,8 +133,8 @@ export default function Sidebar (props = {}) {
 
               <Dropdown.Divider className="my-4 border grey" />
               
+              <NavItem title="Chat with AI" link={Routes.ChatGpt.path} icon={faWandMagicSparkles} />
               <NavItem title="Profile" link={Routes.Profile.path} icon={faUser} />
-              <NavItem title="Logout" link={Routes.Logout.path} icon={faSignOutAlt} />
               
               <Button onClick={logout} variant="secondary" className="upgrade-to-pro mb-3"><FontAwesomeIcon icon={faRocket} className="me-1" /> Chat with AI</Button>
             </Nav>
