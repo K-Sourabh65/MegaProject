@@ -6,18 +6,21 @@ import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-i
 import { Button } from '@themesberg/react-bootstrap';
 import { Routes } from "./routes";
 import '../styles/Project.scss';
+import { useHistory } from 'react-router-dom';
 
-const Card = ({ image, title, text, projectLink }) => {
+const Card = ({image, title, text, projectLink, projectId }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const history = useHistory();
 
-  // const handleIconClick = (e) => {
-  //   e.preventDefault();
-  //   console.log(projectLink)
-  //   window.location.href = projectLink;
-  // };
+  const handleCardClick = () => {
+    history.push({
+      pathname: '/viewproject',
+      state: { projectId: projectId }
+    });
+  };
 
-  return (    
-    <a href={projectLink} className={`card ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+  return (
+    <div className={`card ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={handleCardClick}>
       <div className="card__image">
         <img src={image} alt={title} />
         <div className="overlay"></div>
@@ -31,14 +34,14 @@ const Card = ({ image, title, text, projectLink }) => {
           </a>
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 
-
 export default function Project() {
   const [projects, setProjects] = useState([]);
-  
+  const history = useHistory();
+
   useEffect(() => {
     fetch(`http://localhost:8000/projects`, {
       method: 'GET',
@@ -50,24 +53,17 @@ export default function Project() {
     });
   }, []);
 
-  // function deleteProject(e) {
-  //   console.log(e.target.alt);
-  //   const URL = `http://localhost:8000/deleteproject/${e.target.alt}`;
-  //   fetch(URL, {
-  //     method: 'DELETE',
-  //   })
-  //   .then(window.location.href = '/projects');
-  // }
-
   const MyProjects = projects.map((element, index) => {
     if (element.ProjectStudentEmail === localStorage.getItem('email')) {
       return (
         <div className="cell medium-4" key={index}>
           <Card
+            id={element._id}
             image={element.ProjectImage}
             title={element.ProjectName}
             text={element.ProjectDetail}
             projectLink={element.ProjectLink}
+            projectId={element._id}
           />
         </div>
       );
@@ -84,6 +80,7 @@ export default function Project() {
             title={project.ProjectName}
             text={project.ProjectDetail}
             projectLink={project.ProjectLink}
+            projectId={project._id}
           />
         </div>
       );

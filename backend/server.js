@@ -118,6 +118,14 @@ app.put('/updateproject/:ProjectName', async (req, res) => {
     })
 })
 
+app.get('/viewproject/:projectId', async (req, res) => {
+    const ProjectID = req.params.projectId;
+    console.log(ProjectID);
+    const project = await ProjectModel.findOne({_id: ProjectID});
+    res.json(project)
+})
+
+
 // CONTEST
 
 app.get('/contests', async (req, res) => {

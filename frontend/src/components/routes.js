@@ -21,4 +21,5 @@ export const Routes = {
     AddInterview: { path: "/addinterview"},
     ViewInterview: { path: "/viewinterview"},
     ChatGpt: { path: "/chatgpt"},
+    ViewProject: { path: "/viewproject"},
 }
