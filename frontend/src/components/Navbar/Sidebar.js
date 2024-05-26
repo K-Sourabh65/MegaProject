@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faUser, faBriefcase, faList, faUsers, faCode } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faUser, faBriefcase, faList, faUsers, faCode, faComment, faComments, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -129,7 +129,7 @@ export default function Sidebar (props = {}) {
               <NavItem title="Projects" link={Routes.Projects.path} icon={faCode} />
               <NavItem title="Interviews" link={Routes.Interviews.path} icon={faUsers} />
               <NavItem title="Jobs" link={Routes.Jobs.path} icon={faBriefcase} />
-              <NavItem title="Clubs" link={Routes.Clubs.path} icon={faHandHoldingUsd} />
+              <NavItem title="Discussion Forum" link={Routes.DiscussionForum.path} icon={faCommentDots} />
 
               <Dropdown.Divider className="my-4 border grey" />
               

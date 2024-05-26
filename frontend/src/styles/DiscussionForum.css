@@ -1,0 +1,100 @@
+/* DiscussionForum.css */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.chat {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.message.user {
+    justify-content: flex-end;
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    color: black;
+}
+
+.message.participant {
+    justify-content: flex-start;
+    align-self: flex-start;
+    background-color: #f1f1f1;
+}
+
+.user-dp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 0.9rem;
+}
+
+.message-text {
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.input-form {
+    display: flex;
+    padding-top: 20px;
+}
+
+.input-field {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-right: 15px;
+    font-size: 0.9rem;
+}
+
+.send-button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 24px;
+    height: 24px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

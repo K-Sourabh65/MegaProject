@@ -10,6 +10,7 @@ require('./models/Student')
 require('./models/Project')
 require('./models/Contest')
 require('./models/Interview')
+require('./models/Discussion')
 
 const mongoString = `mongodb+srv://kit:kit123@cluster0.dynplw8.mongodb.net/kit?retryWrites=true&w=majority`
 
@@ -26,6 +27,7 @@ const StudentModel = mongoose.model('Student');
 const ProjectModel = mongoose.model('Project');
 const ContestModel = mongoose.model('Contest');
 const InterviewModel = mongoose.model('Interview');
+const DiscussionForum = mongoose.model('DiscussionForum');
 
 app.get('/login/:StudentEmail&:Password', async (req, res) => {
     try{
@@ -239,7 +241,67 @@ app.get('/interviews/:StudentEmail', async (req, res) => {
     const interviews = await InterviewModel.find({InterviewStudentId: studentEmail});
     res.json(interviews)
 })
+app.get('/messages', )
+app.post('/addmessage', async (req, res) => {
+    const { forumId, sender, text } = req.body;
+  
+    if (!forumId || !sender || !text) {
+      return res.status(400).send({ message: 'Missing required fields' });
+    }
+  
+    try {
+      const forum = await DiscussionForum.findOne({ forumId });
+  
+      if (!forum) {
+        return res.status(404).send({ message: 'Forum not found' });
+      }
+  
+      const newMessage = {
+        sender,
+        text,
+        timestamp: new Date()
+      };
+      forum.messages.push(newMessage);
+      await forum.save();
+      res.status(200).send(newMessage);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: 'Internal server error' });
+    }
+  });
 
+  app.get('/messages', async (req, res) => {
+    const forumId = req.query.forumId;
+  
+    if (!forumId) {
+      return res.status(400).send({ message: 'Missing forumId query parameter' });
+    }
+  
+    try {
+      const forum = await DiscussionForum.findOne({ forumId });
+  
+      if (!forum) {
+        return res.status(404).send({ message: 'Forum not found' });
+      }
+  
+      const messagesWithDetails = await Promise.all(forum.messages.map(async (message) => {
+        const student = await StudentModel.findOne({ StudentEmail: message.sender });
+        return {
+          forumId: forum.forumId,
+          sender: message.sender,
+          text: message.text,
+          timestamp: message.timestamp,
+          userName: student ? student.StudentName : 'Unknown',
+          userDP: student ? student.DP : null
+        };
+      }));
+  
+      res.status(200).send(messagesWithDetails);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: 'Internal server error' });
+    }
+  });
 
 app.listen(8000, () => {
     console.log("server has started in the port 8000")

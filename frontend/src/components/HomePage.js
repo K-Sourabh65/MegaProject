@@ -26,6 +26,7 @@ import AddInterview from './AddInterview'
 import ViewInterview from './ViewInterview'
 import ChatGpt from './ChatGpt';
 import ViewProject from './ViewProject';
+import DiscussionForum from './DiscussionForum';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -99,6 +100,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.ChatGpt.path} component={ChatGpt}/>
     <RouteWithSidebar exact path={Routes.ViewInterview.path} component={ViewInterview}/>
     <RouteWithSidebar exact path={Routes.ViewProject.path} component={ViewProject}/>
+    <RouteWithSidebar exact path={Routes.DiscussionForum.path} component={DiscussionForum}/>
 
     <Redirect to={Routes.NotFound.path} />
   </Switch>
