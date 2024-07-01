@@ -303,6 +303,7 @@ app.post('/addmessage', async (req, res) => {
     }
   });
 
-app.listen(8000, () => {
-    console.log("server has started in the port 8000")
+port = process.env.PORT
+app.listen(port, () => {
+    console.log("server has started on the port " + port)
 })
